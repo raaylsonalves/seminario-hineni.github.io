@@ -1,0 +1,533 @@
+/* =====================================================
+   SEMINÁRIO BÍBLICO HINENI — style.css
+   ===================================================== */
+
+/* ===== TOKENS ===== */
+:root {
+    --primary: #fbbf24;
+    --primary-dark: #d97706;
+    --bg: #0a0a0a;
+    --bg-accent: #171717;
+    --text-main: #f3f4f6;
+    --text-muted: #a3a3a3;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    line-height: 1.1;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+/* ===== LAYOUT ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: 8rem 0;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+    animation: fadeIn 1s ease-out forwards;
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: background 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(10, 10, 10, 0.95);
+}
+
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--primary); }
+
+.nav-cta {
+    padding: 0.6rem 1.5rem;
+    background: var(--primary);
+    color: #000 !important;
+    border-radius: 50px;
+    font-weight: 800 !important;
+    transition: var(--transition);
+}
+
+.nav-cta:hover { background: #fff; color: #000 !important; }
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--text-main);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== HERO ===== */
+.hero {
+    height: 100vh;
+    padding-top: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(transparent, var(--bg));
+}
+
+.hero-content {
+    z-index: 1;
+    max-width: 900px;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #fff, var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--primary);
+    letter-spacing: 5px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--text-main);
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background: var(--primary);
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+    background: #fff;
+}
+
+/* ===== SECTION HEADER ===== */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1.5rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+/* ===== PROBLEM / BENEFIT SECTION ===== */
+.problem-section {
+    background-color: var(--bg-accent);
+}
+
+.grid-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.benefit-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.benefit-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-10px);
+    background: rgba(251, 191, 36, 0.05);
+}
+
+/* ===== CURRICULUM ===== */
+/* Desktop: 3 column grid */
+.curriculum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+}
+
+.subject-card {
+    padding: 1.5rem;
+    background: var(--bg-accent);
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.subject-card:hover {
+    background: #262626;
+    transform: translateX(10px);
+}
+
+.subject-number {
+    font-size: 0.875rem;
+    color: var(--primary);
+    font-weight: 800;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.subject-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Mobile accordion (hidden on desktop) */
+.curriculum-accordion {
+    display: none;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.acc-item {
+    background: var(--bg-accent);
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.acc-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.25rem;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    gap: 1rem;
+    transition: background 0.2s;
+}
+
+.acc-trigger:hover {
+    background: rgba(251, 191, 36, 0.06);
+}
+
+.acc-trigger .acc-num {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.acc-trigger .acc-icon {
+    font-size: 1.2rem;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.acc-item.open .acc-trigger .acc-icon {
+    transform: rotate(45deg);
+}
+
+.acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.2s;
+    padding: 0 1.25rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.acc-item.open .acc-body {
+    max-height: 200px;
+    padding: 0 1.25rem 1.1rem;
+}
+
+/* ===== INFO BOXES ===== */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.info-item {
+    text-align: center;
+    padding: 2rem;
+    background: var(--glass);
+    border-radius: 15px;
+}
+
+.info-item h4 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.info-item p {
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+/* ===== PRICING ===== */
+.pricing-section {
+    background: linear-gradient(135deg, #0a0a0a 0%, #171717 100%);
+    display: flex;
+    justify-content: center;
+}
+
+.pricing-card {
+    background: var(--bg);
+    border: 2px solid var(--primary);
+    padding: 4rem;
+    border-radius: 30px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.price {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 1rem 0;
+    display: block;
+}
+
+.price-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    display: block;
+}
+
+/* ===== HINENI MEANING ===== */
+.hineni-meaning {
+    text-align: center;
+    padding: 10rem 0;
+}
+
+.hebrew {
+    font-size: 5rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.meaning-title {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.meaning-desc {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    padding: 4rem 0;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    section { padding: 4rem 0; }
+
+    /* Navbar: hamburger menu */
+    .hamburger { display: flex; }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 68px; left: 0; right: 0;
+        background: rgba(10, 10, 10, 0.97);
+        backdrop-filter: blur(20px);
+        padding: 1rem 2rem 2rem;
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: 1px solid var(--glass-border); }
+    .nav-links a { display: block; padding: 1rem 0; font-size: 1rem; }
+
+    .nav-cta {
+        margin-top: 1rem;
+        text-align: center;
+        border-radius: 50px;
+        padding: 0.8rem 1.5rem !important;
+    }
+
+    /* Hero */
+    .hero-title { font-size: 3rem; }
+    .hero-tagline { font-size: 1rem; }
+
+    /* Benefits: 1 column */
+    .grid-benefits { grid-template-columns: 1fr; }
+
+    /* Curriculum: hide grid, show accordion */
+    .curriculum-grid { display: none; }
+    .curriculum-accordion { display: flex; }
+
+    /* Info grid: 2 columns */
+    .info-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .info-item { padding: 1.5rem 1rem; }
+
+    /* Pricing */
+    .pricing-card { padding: 2rem 1.5rem; }
+
+    /* Meaning */
+    .hebrew { font-size: 3.5rem; }
+    .hineni-meaning { padding: 6rem 0; }
+}
+
+@media (max-width: 420px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .btn { padding: 1rem 1.5rem; font-size: 0.9rem; }
+}
