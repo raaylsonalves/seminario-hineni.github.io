@@ -116,26 +116,20 @@ section {
 
 .nav-logo {
     display: flex;
-    flex-direction: column;
     align-items: center;
     text-decoration: none;
-    line-height: 1;
+    height: 100%;
 }
 
-.logo-top {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.4rem;
-    color: var(--text-main);
-    margin-bottom: -5px;
-    font-weight: 700;
+.nav-logo-img {
+    height: 48px; /* Ajuste conforme necessário para o navbar de 68px */
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition);
 }
 
-.logo-bottom {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--primary);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+.nav-logo:hover .nav-logo-img {
+    transform: scale(1.05);
 }
 
 .nav-links {
