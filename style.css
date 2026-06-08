@@ -122,7 +122,8 @@ section {
 }
 
 .nav-logo-img {
-    height: 48px; /* Ajuste conforme necessário para o navbar de 68px */
+    height: 100px;
+    /* Ajuste conforme necessário para o navbar de 68px */
     width: auto;
     object-fit: contain;
     transition: var(--transition);
